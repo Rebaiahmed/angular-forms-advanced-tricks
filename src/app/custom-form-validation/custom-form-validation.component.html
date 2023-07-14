@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+    <label>
+      Age:
+      <input type="number" formControlName="age">
+    </label>
+    <div *ngIf="form.get('age').invalid && form.get('age').dirty">
+      <div *ngIf="form.get('age').errors?.required">Age is required.</div>
+      <div *ngIf="form.get('age').errors?.invalidAge">Age must be between 18 and 120.</div>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>

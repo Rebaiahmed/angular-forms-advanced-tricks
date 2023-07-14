@@ -1,0 +1,13 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <label>Name: <input type="text" formControlName="name"></label>
+
+    <div formGroupName="address">
+      <legend>Address</legend>
+      <label>Street: <input type="text" formControlName="street"></label>
+      <label>City: <input type="text" formControlName="city"></label>
+      <label>State: <input type="text" formControlName="state"></label>
+      <label>Zipcode: <input type="text" formControlName="zipcode"></label>
+    </div>
+
+    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+  </form>
