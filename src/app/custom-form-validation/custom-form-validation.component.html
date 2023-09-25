@@ -3,9 +3,13 @@
       Age:
       <input type="number" formControlName="age">
     </label>
-    <div *ngIf="form.get('age').invalid && form.get('age').dirty">
-      <div *ngIf="form.get('age').errors?.required">Age is required.</div>
-      <div *ngIf="form.get('age').errors?.invalidAge">Age must be between 18 and 120.</div>
-    </div>
-    <button type="submit" [disabled]="form.invalid">Submit</button>
+    <div *ngIf="form.get('age')?.invalid && form.get('age')?.dirty">
+      <div *ngIf="form.get('age')?.errors?.['required']" class="alert alert-danger">
+        Age is required.
+      </div>
+      <div *ngIf="form.get('age')?.errors?.['invalidAge']" class="alert alert-danger">
+        Age must be at least 18.
+      </div>
+      </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
   </form>

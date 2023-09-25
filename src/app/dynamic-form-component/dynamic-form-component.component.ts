@@ -23,7 +23,18 @@ export class DynamicFormComponentComponent {
       type: 'email',
       name: 'email',
       label: 'Email'
+    },
+    {
+      type: 'date',
+      name: 'dob',
+      label: 'Date of Birth'
+    },
+    {
+      type: 'tel',
+      name: 'phoneNumber',
+      label: 'Phone Number'
     }
+    
   ];
 
   constructor(private fb: FormBuilder) {

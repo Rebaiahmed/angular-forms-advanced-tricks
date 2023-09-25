@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
-function ageValidator(control: FormControl) {
-  const age = control.value;
-  if (age && (isNaN(age) || age < 18 || age > 120)) {
-    return { invalidAge: true };
-  }
-  return null;
+
+
+function ageValidator(minAge: number): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const age = control.value as number;
+
+    if (isNaN(age) || age < minAge) {
+      return { 'invalidAge': true };
+    }
+
+    return null;
+  };
 }
+
 
 @Component({
   selector: 'app-custom-form-validation',
@@ -19,9 +26,11 @@ export class CustomFormValidationComponent {
   form: FormGroup;
 
   constructor() {
-    this.form = new FormGroup({
-      age: new FormControl('', [Validators.required, ageValidator])
-    });
+      this.form = new FormGroup({
+      age: new FormControl('', [Validators.required,ageValidator(18)])
+    });  
+
+   
   }
 
   onSubmit() {

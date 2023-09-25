@@ -1,7 +1,9 @@
+<div class="position-relative">
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div *ngFor="let field of fields">
-      <label>{{field.label}}</label>
-      <input [type]="field.type" [formControlName]="field.name">
+      <label class="form-label">{{field.label}}</label>
+      <input class="form-control" [type]="field.type" [formControlName]="field.name">
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+</div>
